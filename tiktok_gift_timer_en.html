@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>TikTok Gift Timer</title>
+<style>
+body {
+    background: transparent;
+    font-family: Arial, sans-serif;
+    color: #ff66aa;
+    text-align: center;
+    margin-top: 40px;
+}
+#timer {
+    font-size: 80px;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px #000;
+}
+.btn-container {
+    margin-top: 30px;
+}
+button {
+    font-size: 22px;
+    padding: 14px 28px;
+    margin: 8px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+}
+button:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+</style>
+</head>
+<body>
+<div id="timer">60:00</div>
+<div class="btn-container">
+    <button onclick="addTime(5)">🌹 Rose +5 min</button>
+    <button onclick="addTime(20)">💬 Bubble +20 min</button>
+    <button onclick="addTime(60)">❤️ Heart +60 min</button>
+    <button onclick="addTime(500)">🌌 Universe +500 min</button>
+</div>
+
+<script>
+let totalSeconds = 60*60; // 60 minutes
+
+function updateTimer() {
+    let m = Math.floor(totalSeconds / 60);
+    let s = totalSeconds % 60;
+    document.getElementById("timer").innerHTML =
+        String(m).padStart(2, '0') + ":" + String(s).padStart(2, '0');
+}
+
+function tick() {
+    if (totalSeconds > 0) {
+        totalSeconds--;
+        updateTimer();
+    }
+}
+
+setInterval(tick, 1000);
+updateTimer();
+
+function addTime(mins) {
+    totalSeconds += mins*60;
+    updateTimer();
+}
+</script>
+</body>
+</html>
